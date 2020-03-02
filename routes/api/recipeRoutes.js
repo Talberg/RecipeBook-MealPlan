@@ -13,19 +13,17 @@ router.get("/all", authMiddleware.isLoggedIn, function (req, res, next) {
 
 // /api/todos/new
 // add new todo, update the user to have todo id
-router.post("/new", authMiddleware.isLoggedIn, function (req, res, next) {
-    const newTodo = new db.Todo({
-        author: req.user._id,
-        todo: req.body.todo
-    });
-
-    newTodo.save((err, newTodo) => {
-        if (err) throw err;
-        db.User.findByIdAndUpdate(req.user.id, { $push: { todos: newTodo._id } }, (err, user) => {
+router.post("/new", function (req, res, next) {
+    console.log(req.body)
+   db.Recipe.create(req.body)
+    .then(({author,_id})=>{
+        db.User.findByIdAndUpdate(author, { $push: { recipes: _id } }, { new: true }, (err, user) => {
             if (err) throw err;
-            res.send(newTodo, user);
-        });
-    });
+            res.send(user);
+        })
+    })
+
+ 
 });
 
 // /api/todos/remove

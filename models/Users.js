@@ -29,9 +29,9 @@ const usersSchema = new Schema({
     type: Date,
     default: Date.now()
   },
-  todos: [{
+  recipes: [{
     type: Schema.Types.ObjectId,
-    ref: 'Todo'
+    ref: 'Recipes'
   }],
 email:{
   type:String,

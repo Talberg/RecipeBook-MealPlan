@@ -6,16 +6,22 @@ const recipeSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "User"
   },
-  recipe: {
+  title: {
     type: String,
     unique: false,
     required: [true, "text is required"]
   },
-  mealPlan  : {
+  ingredients  : {
     type: String,
     unique: false,
     required: [false, ]
   },
+  instructions : {
+    type: String,
+    unique: false,
+    required: [false, ]
+  },
+  
 });
 
 const Recipe = mongoose.model("Recipe", recipeSchema);
