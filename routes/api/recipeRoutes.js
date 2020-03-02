@@ -16,9 +16,7 @@ router.get("/all", authMiddleware.isLoggedIn, function (req, res, next) {
 router.post("/new", authMiddleware.isLoggedIn, function (req, res, next) {
     const newTodo = new db.Todo({
         author: req.user._id,
-        title: req.body.title,
-        ingredients: req.body.ingredients,
-        tags:req.body.tags
+        todo: req.body.todo
     });
 
     newTodo.save((err, newTodo) => {
