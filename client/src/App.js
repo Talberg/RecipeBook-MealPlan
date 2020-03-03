@@ -8,6 +8,7 @@ import TopNav from "./components/TopNav";
 import Footer from "./components/Footer";
 import { Container } from 'reactstrap';
 import Book from './pages/Book'
+import AddRecipe from "./pages/AddRecipe"
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
               <Route exact path="/profile" component={Profile} ></Route>
               <Route exact path= "/home"><Home/></Route>
               <Route exact path="/recipebook"><Book/></Route>
+              <Route exact path="/addrecipe"><AddRecipe/></Route>
               <Route component={NoMatch} />
             </Switch>
           </Container>

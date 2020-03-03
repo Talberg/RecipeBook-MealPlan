@@ -72,10 +72,10 @@ export default class Navigation extends Component {
   {this.state.loggedIn ? (<div className='ml-auto'>
       <NavItem>
       <NavLink  onClick={this.logout}>Logout</NavLink>
+      <NavLink  onClick={this.logout}>Logout</NavLink>
+      
     </NavItem>
-    <NavItem>
-    <NavLink  href="/profile">Profile</NavLink>
-  </NavItem>
+   
   </div>
   ):(
       <div className='ml-auto'>
