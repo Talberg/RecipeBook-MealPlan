@@ -55,13 +55,14 @@ export default class Navigation extends Component {
     render() {
         return (
             <div>
-<Nav tabs>
+
+<Nav className=" text-warning"  tabs>
   <NavItem>
-    <NavLink href="/" >Home</NavLink>
+    <NavLink className="" href="/" >Home</NavLink>
   </NavItem>
 
   <NavItem>
-    <NavLink href="/recipebook">Recipe Book</NavLink>
+    <NavLink href="/cookbook">Cook Book</NavLink>
   </NavItem>
   <NavItem>
     <NavLink href="/mealplan">Meal Plan</NavLink>
@@ -69,9 +70,14 @@ export default class Navigation extends Component {
   <NavItem>
     <NavLink  href="/addrecipe">Add Recipe</NavLink>
   </NavItem>
+  <NavItem>
+    <NavLink  href="/recipesearch">Recipe Search</NavLink>
+  </NavItem>
+  <br/>
+  <br/>
+  <br/>
   {this.state.loggedIn ? (<div className='ml-auto'>
       <NavItem>
-      <NavLink  onClick={this.logout}>Logout</NavLink>
       <NavLink  onClick={this.logout}>Logout</NavLink>
       
     </NavItem>
@@ -80,7 +86,7 @@ export default class Navigation extends Component {
   ):(
       <div className='ml-auto'>
     
-    <NavLink  href="/login">Log-in</NavLink>
+    
   
   <NavItem>
   <NavLink  href="/signup">Sign Up</NavLink>
