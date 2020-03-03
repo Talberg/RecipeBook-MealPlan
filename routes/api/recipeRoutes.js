@@ -5,9 +5,9 @@ const authMiddleware = require("../../config/middleware/authMiddleware");
 
 // /api/todos/all
 // get all todos from the signed in user
-router.get("/all", authMiddleware.isLoggedIn, function (req, res, next) {
-    db.Todo.find({ author: req.user.id }, (err, todos) => {
-        res.json(todos);
+router.get("/all",  function (req, res, next) {
+    db.Recipe.find({ author: req.user._id }, (err, recipes) => {
+        res.json(recipes);
     });
 });
 
