@@ -6,16 +6,19 @@ import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../../components/Grid";
 import { List, ListItem } from "../../components/List";
 import { Input, TextArea, FormBtn } from "../../components/Form";
-import {Button } from 'reactstrap'
+import { Button } from 'reactstrap'
+import axios from "axios"
 
 function Book() {
     // Setting our component's initial state
-    const [recipes, setRecipe] = useState([])
+    const [recipes, setRecipes] = useState([])
     const [user, setUser] = useState({
         loggedIn: false,
         user: {}
     })
     const [formObject, setFormObject] = useState({})
+
+
 
     // Load all books and store them with setBooks
     useEffect(() => {
@@ -31,11 +34,18 @@ function Book() {
             loadRecipe())
     }, [])
 
+
+
+
+
     // Loads all books and sets them to books
     function loadRecipe() {
-        API.getBooks()
-            .then(res =>
-                setRecipe(res.data)
+        axios.get("/api/recipe/all")
+            .then(res => {
+                console.log(res)
+                setRecipes(res.data)
+            }
+
             )
             .catch(err => console.log(err));
     };
@@ -46,6 +56,7 @@ function Book() {
             .then(res => loadRecipe())
             .catch(err => console.log(err));
     }
+
 
     // Handles updating component state when the user types into the input field
     function handleInputChange(event) {
@@ -71,24 +82,38 @@ function Book() {
 
     return (
 
-<div>
-        {user.loggedIn ? (
-            <div className="profileBox">
-                <h1 id="userTitle">Welcome </h1>
-            </div>
-        ) : (
-            <div className="noUser">
-                
-                    <>
-                        <h1>please log in</h1>
-                        <Link className="loginLink" to="/login"><Button className="loginBtn" color="info" block>Login</Button></Link>
-                    </>
-                
-                    
-                
-            </div> 
-        )}
-      </div>
+        <div>
+            {user.loggedIn ? (
+                <div className="profileBox">
+                    <h1 id="userTitle">Welcome </h1>
+                    {recipes.map(recipe => {
+
+                        return( <div><div class="card">
+                        <h5 class="card-header">{recipe.title}</h5>
+                        <div class="card-body">
+                    <h5 class="card-title">{recipe.ingredients}</h5>
+                          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                          <a href="#" class="btn btn-primary">Recipe Card</a>
+                        </div>
+                      </div>
+                      <br/>
+                      <br/>
+                      </div>)
+                    })}
+                </div>
+            ) : (
+                    <div className="noUser">
+
+                        <>
+                            <h1>please log in</h1>
+                            <Link className="loginLink" to="/login"><Button className="loginBtn" color="info" block>Login</Button></Link>
+                        </>
+
+
+
+                    </div>
+                )}
+        </div>
 
 
 
@@ -99,59 +124,59 @@ function Book() {
 
 
 
-    //     < Container fluid >
-    //         <Row>
-    //             <Col size="md-6">
-    //                 <Jumbotron>
-    //                     <h1>Add a Recipe! </h1>
-    //                 </Jumbotron>
-    //                 <form>
-    //                     <Input
-    //                         onChange={handleInputChange}
-    //                         name="title"
-    //                         placeholder="Title (required)"
-    //                     />
-    //                     <Input
-    //                         onChange={handleInputChange}
-    //                         name="author"
-    //                         placeholder="Author (required)"
-    //                     />
-    //                     <TextArea
-    //                         onChange={handleInputChange}
-    //                         name="synopsis"
-    //                         placeholder="Synopsis (Optional)"
-    //                     />
-    //                     <FormBtn
-    //                         disabled={!(formObject.author && formObject.title)}
-    //                         onClick={handleFormSubmit}
-    //                     >
-    //                         Submit Recipe
-    //           </FormBtn>
-    //                 </form>
-    //             </Col>
-    //             <Col size="md-6 sm-12">
-    //                 <Jumbotron>
-    //                     <h1>All Your Recipes </h1>
-    //                 </Jumbotron>
-    //                 {recipes.length ? (
-    //                     <List>
-    //                         {recipes.map(recipe => (
-    //                             <ListItem key={recipe._id}>
-    //                                 <Link to={"/books/" + recipe._id}>
-    //                                     <strong>
-    //                                         {recipe.title} by {recipe.author}
-    //                                     </strong>
-    //                                 </Link>
-    //                                 <DeleteBtn onClick={() => deleteBook(recipe._id)} />
-    //                             </ListItem>
-    //                         ))}
-    //                     </List>
-    //                 ) : (
-    //                         <h3>No Results to Display</h3>
-    //                     )}
-    //             </Col>
-    //         </Row>
-    //   </Container >
+        //     < Container fluid >
+        //         <Row>
+        //             <Col size="md-6">
+        //                 <Jumbotron>
+        //                     <h1>Add a Recipe! </h1>
+        //                 </Jumbotron>
+        //                 <form>
+        //                     <Input
+        //                         onChange={handleInputChange}
+        //                         name="title"
+        //                         placeholder="Title (required)"
+        //                     />
+        //                     <Input
+        //                         onChange={handleInputChange}
+        //                         name="author"
+        //                         placeholder="Author (required)"
+        //                     />
+        //                     <TextArea
+        //                         onChange={handleInputChange}
+        //                         name="synopsis"
+        //                         placeholder="Synopsis (Optional)"
+        //                     />
+        //                     <FormBtn
+        //                         disabled={!(formObject.author && formObject.title)}
+        //                         onClick={handleFormSubmit}
+        //                     >
+        //                         Submit Recipe
+        //           </FormBtn>
+        //                 </form>
+        //             </Col>
+        //             <Col size="md-6 sm-12">
+        //                 <Jumbotron>
+        //                     <h1>All Your Recipes </h1>
+        //                 </Jumbotron>
+        //                 {recipes.length ? (
+        //                     <List>
+        //                         {recipes.map(recipe => (
+        //                             <ListItem key={recipe._id}>
+        //                                 <Link to={"/books/" + recipe._id}>
+        //                                     <strong>
+        //                                         {recipe.title} by {recipe.author}
+        //                                     </strong>
+        //                                 </Link>
+        //                                 <DeleteBtn onClick={() => deleteBook(recipe._id)} />
+        //                             </ListItem>
+        //                         ))}
+        //                     </List>
+        //                 ) : (
+        //                         <h3>No Results to Display</h3>
+        //                     )}
+        //             </Col>
+        //         </Row>
+        //   </Container >
     );
 }
 
