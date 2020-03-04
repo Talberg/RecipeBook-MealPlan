@@ -8,6 +8,8 @@ import { List, ListItem } from "../../components/List";
 import { Input, TextArea, FormBtn } from "../../components/Form";
 import { Button } from 'reactstrap'
 import axios from "axios"
+import "./style.css"
+
 
 function Book() {
     // Setting our component's initial state
@@ -51,10 +53,9 @@ function Book() {
     };
 
     // Deletes a book from the database with a given id, then reloads books from the db
-    function deleteBook(id) {
-        API.deleteBook(id)
-            .then(res => loadRecipe())
-            .catch(err => console.log(err));
+    function deleteRecipe(recipe) {
+      axios.post("api/recipe/remove", recipe )
+      .then(loadRecipe())
     }
 
 
@@ -85,7 +86,8 @@ function Book() {
         <div>
             {user.loggedIn ? (
                 <div className="profileBox">
-                    <h1 id="userTitle">Welcome </h1>
+                    <h1 className="text-center" id="userTitle">Your Cook Book </h1>
+                    <hr/>
                     {recipes.map(recipe => {
 
                         return( <div><div class="card">
@@ -93,7 +95,8 @@ function Book() {
                         <div class="card-body">
                     <h5 class="card-title">{recipe.ingredients}</h5>
                           <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                          <a href="#" class="btn btn-primary">Recipe Card</a>
+                          <a href={`/cookbook/${recipe._id}`}  class="col-m-2 mr-2 btn btn-primary">Recipe Card</a>
+                          <a onClick={()=>{deleteRecipe(recipe)}}  class="col-m-2  btn btn-primary">Delete Recipe</a>
                         </div>
                       </div>
                       <br/>
@@ -105,8 +108,8 @@ function Book() {
                     <div className="noUser">
 
                         <>
-                            <h1>please log in</h1>
-                            <Link className="loginLink" to="/login"><Button className="loginBtn" color="info" block>Login</Button></Link>
+                            <h1 >Please log in!</h1>
+                            <Link className="loginLink" to="/login"><Button className="loginBtn" color="info" block >Login</Button></Link>
                         </>
 
 

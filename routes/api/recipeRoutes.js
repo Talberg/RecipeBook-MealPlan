@@ -26,15 +26,13 @@ router.post("/new", function (req, res, next) {
  
 });
 
-// /api/todos/remove
-// removed todo based on id, updates user
-router.delete("/remove", authMiddleware.isLoggedIn, function (req, res, next) {
-    db.Todo.findByIdAndDelete(req.body.id, (err, todo) => {
+
+router.post("/remove", authMiddleware.isLoggedIn, function (req, res, next) {
+    console.log(req.body)
+    db.Recipe.findByIdAndDelete(req.body._id, (err, recipe) => {
         if (err) throw err;
-        db.User.findByIdAndUpdate(todo._id, { $pull: { 'todos': todo._id } }, { new: true }, (err, user) => {
-            if (err) throw err;
-            res.send(user);
-        });
+        
+       
     });
 });
 

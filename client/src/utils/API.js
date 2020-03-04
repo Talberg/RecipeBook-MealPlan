@@ -39,8 +39,8 @@ export default {
       return axios.get("/api/books/" + id);
     },
     // Deletes the book with the given id
-    deleteBook: function(id) {
-      return axios.delete("/api/books/" + id);
+    deleteRecipe: function(id) {
+      return axios.delete("/api/recipe/" + id);
     },
     // Saves a book to the database
     saveBook: function(recipeData) {
