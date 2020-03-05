@@ -29,10 +29,12 @@ const usersSchema = new Schema({
     type: Date,
     default: Date.now()
   },
-  recipes: [{
-    type: Schema.Types.ObjectId,
-    ref: 'Recipes'
-  }],
+ 
+  currentPlan: {
+    type: String,
+    unique: false,
+    required: [false, "username is required"]
+  },
 email:{
   type:String,
   unique:true,

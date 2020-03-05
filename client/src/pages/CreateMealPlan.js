@@ -6,8 +6,15 @@ import { Button } from 'reactstrap'
 import { List, ListItem } from "../components/List";
 import { Link } from "react-router-dom";
 
-function MealPlan(){
+function CreateMealPlan(){
+
+const [recipeList, setRecipeList] = useState([])
+const [user, setUser] = useState({
+  loggedIn: false,
+  user: {}
+}) 
 const [recipe, setRecipe] =useState({
+  
   title:"",
   monday:"",
   tuesday:"",
@@ -17,17 +24,38 @@ const [recipe, setRecipe] =useState({
   saturday:"",
   sunday:""
 })
-const [recipeList, setRecipeList] = useState([])
-const [user, setUser] = useState({
-  loggedIn: false,
-  user: {}
-}) 
+useEffect(() => {
+  API.isLoggedIn().then(user => {
+      if (user.data.loggedIn) {
+        console.log(user)
+          setUser({
+              loggedIn: true,
+              user: user.data.user
+          });
+          console.log(user.data)
+          setRecipe({...recipe, author:user._id})
+      }
+  },
+      loadRecipe(),
+      console.log(recipeList))
+}, [])
+
+
+
+
+
+
+
 
 
 function handleSubmit(event){
 event.preventDefault()
 axios.post("/api/mealplan/new", recipe )
 }
+
+
+
+
 
 
 function handleInputChange(event) {
@@ -48,19 +76,7 @@ function loadRecipe() {
       .catch(err => console.log(err));
 };
       
-      useEffect(() => {
-        API.isLoggedIn().then(user => {
-            if (user.data.loggedIn) {
-                setUser({
-                    loggedIn: true,
-                    user: user.data.user
-                });
-                console.log(user.data)
-            }
-        },
-            loadRecipe(),
-            console.log(recipeList))
-    }, [])
+      
 
 
 
@@ -163,4 +179,4 @@ function loadRecipe() {
     )
 }
 
-export default MealPlan
+export default CreateMealPlan

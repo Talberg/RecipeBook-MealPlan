@@ -12,9 +12,10 @@ import axios from "axios"
 import "./style.css"
 
 
-function Book() {
+function MealPlan() {
     // Setting our component's initial state
-    const [recipes, setRecipes] = useState([])
+    const [mealplans, setMealPlans] = useState([])
+    const [currentPlan, setCurrentPlan] = useState()
     const [user, setUser] = useState({
         loggedIn: false,
         user: {}
@@ -32,9 +33,13 @@ function Book() {
                     user: user.data.user
                 });
                 console.log(user.data)
+
             }
         },
-            loadRecipe())
+            loadMealPlan())
+            loadCurrentPlan()
+            console.log(mealplans)
+            console.log(currentPlan)
     }, [])
 
 
@@ -42,22 +47,30 @@ function Book() {
 
 
     // Loads all books and sets them to books
-    function loadRecipe() {
-        axios.get("/api/recipe/all")
+    function loadMealPlan() {
+        axios.get("/api/mealplan/all")
             .then(res => {
                 console.log(res)
-                setRecipes(res.data)
+                setMealPlans(res.data)
             }
 
             )
             .catch(err => console.log(err));
     };
+    function loadCurrentPlan(){
+        axios.get("/api/mealplan/current").then(res =>{
+            console.log(res)
+            setCurrentPlan(res.data)}
+        )
+
+        
+    }
+    function makeCurrent(plan){
+        axios.post("/api/mealplan/makecurrent", plan)
+    }
 
     // Deletes a book from the database with a given id, then reloads books from the db
-    function deleteRecipe(recipe) {
-      axios.post("api/recipe/remove", recipe )
-      .then(loadRecipe())
-    }
+   
 
 
     // Handles updating component state when the user types into the input field
@@ -66,21 +79,10 @@ function Book() {
         setFormObject({ ...formObject, [name]: value })
     };
 
+
     // When the form is submitted, use the API.saveBook method to save the book data
     // Then reload books from the database
-    function handleFormSubmit(event) {
-        event.preventDefault();
-        if (formObject.title && formObject.author) {
-            API.saveBook({
-                title: formObject.title,
-                author: formObject.author,
-                synopsis: formObject.synopsis
-            })
-                .then(res => loadRecipe())
-                .catch(err => console.log(err));
-        }
-
-    };
+ ;
 
     return (
 
@@ -88,17 +90,61 @@ function Book() {
             {user.loggedIn ? (
                 <div className="profileBox">
                     <hr/>
-                    <h1 className="text-center" id="userTitle">Your Cook Book </h1>
-                    <hr/>
-                    {recipes.map(recipe => {
+                   { currentPlan         ?(<> <h1 className="text-center" id="userTitle">Current Meal Plan <hr/> </h1>
+                    
+
+                     <div><div class="card">
+                        <h5 class="card-header">{currentPlan.title}</h5>
+                        <div class="card-body">
+                    <h5 class="card-title">{}</h5>
+                        <ul>
+                    <li>Monday: {currentPlan.monday} </li>
+                    <li>Tuesday: {currentPlan.tuesday}</li>
+                    <li>wednesday: {currentPlan.wednesday}</li>
+                    <li>thursday: {currentPlan.thursday}</li>
+                    <li>Friday: {currentPlan.friday}</li>
+                    <li>Saturday: {currentPlan.monday}</li>
+                    <li>Sunday: {currentPlan.monday}</li>
+                           
+                        </ul>
+                          
+                          <a  class="col-m-2  btn btn-primary">Make Current</a>
+                        </div>
+                      </div>
+                      <br/>
+                      <br/>
+                      </div></> ) : (<>
+                      <h1 className="text-center"> No meal plan selected<hr></hr></h1>
+                      <h2 className="text-center"> Make one of your meal plans your current by clicking on the button that says "Make Current"<hr></hr></h2>
+                        </>
+                      )
+
+
+                    }
+
+
+
+
+                        {mealplans !== [] ? (<>
+                    <h3>Your Meal Plans </h3>
+                    {mealplans.map(plan => {
 
                         return( <div><div class="card">
-                        <h5 class="card-header">{recipe.title}</h5>
+                        <h5 class="card-header">{plan.title}</h5>
                         <div class="card-body">
-                    <h5 class="card-title">{recipe.ingredients}</h5>
-                          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                          <a href={`/cookbook/${recipe._id}`}  class="col-m-2 mr-2 btn btn-primary">Recipe Card</a>
-                          <a onClick={()=>{deleteRecipe(recipe)}}  class="col-m-2  btn btn-primary">Delete Recipe</a>
+                    <h5 class="card-title">{}</h5>
+                        <ul>
+                    <li>Monday: {plan.monday}</li>
+                    <li>Tuesday: {plan.tuesday}</li>
+                    <li>wednesday: {plan.wednesday}</li>
+                    <li>thursday: {plan.thursday}</li>
+                    <li>Friday: {plan.friday}</li>
+                    <li>Saturday: {plan.monday}</li>
+                    <li>Sunday: {plan.monday}</li>
+                           
+                        </ul>
+                          
+                          <a onClick={()=>{makeCurrent(plan)}}  class="col-m-2  btn btn-primary">Make Current</a>
                         </div>
                       </div>
                       <br/>
@@ -109,7 +155,13 @@ function Book() {
 
                       
                       )
-                    })}
+                    })}</>):(<a href="mealplan/create"  class=" text-light offset-3  btn btn-primary">Create Meal Plan</a>)}
+
+
+
+
+
+
                 </div>
             ) : (
                     <div className="noUser">
@@ -191,4 +243,4 @@ function Book() {
 }
 
 
-export default Book;
+export default MealPlan;

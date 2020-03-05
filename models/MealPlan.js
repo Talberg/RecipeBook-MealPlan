@@ -3,7 +3,12 @@ const Schema = mongoose.Schema;
 
 const mealPlanSchema = new Schema({
 
-  name: {
+  author: {
+    type: String,
+    unique: false,
+    required: [true, "text is required"]
+  },
+  title: {
     type: String,
     unique: true,
     required: [true, "text is required"]

@@ -56,7 +56,11 @@ const AddRecipe = (props) => {
     axios.post("/api/recipe/new", recipe)
   }
    
-  return (
+  return (<>
+    <hr/>
+    <br/>
+    <hr/>
+
 <form>
   <div className="form-group">
     <label for="exampleFormControlInput1">Recipe Title</label>
@@ -156,7 +160,7 @@ const AddRecipe = (props) => {
   
   
   <button className="btn-primary " onClick={handleSubmit}>Add Recipe</button>
-</form>  )
+</form>  </>)
 }
 
 export default AddRecipe ;

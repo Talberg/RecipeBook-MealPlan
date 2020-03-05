@@ -1,100 +1,82 @@
-import React, { Component } from "react";
-import "./TopNav.scss";
-import API from "../../utils/API";
-import {
-    Collapse,
-    Navbar,
-    NavbarToggler,
-    NavbarBrand,
-    Nav,
-    NavItem,
-    NavLink,
-    UncontrolledDropdown,
-    DropdownToggle,
-    DropdownMenu,
-    DropdownItem,
-} from 'reactstrap';
+import React, { useState, useReducer,useEffect } from 'react';
+import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
+import API from "../../utils/API"
 
-export default class Navigation extends Component {
+const Example = (props) => {
+  const [collapsed, setCollapsed] = useState(true);
+  const [user ,setUser] = useState({
+      loggedIn:false
 
-    constructor(props) {
-        super(props);
-        this.toggle = this.toggle.bind(this);
-        this.state = {
-            isOpen: false,
-            loggedIn: false
-        };
-    }
-
-    componentDidMount() {
-        API.isLoggedIn().then(user => {
-            if (user.data.loggedIn) {
-                this.setState({
-                    loggedIn: true
-                });
-            }
-        }).catch(err => {
-            console.log(err);
-        });
-    }
-
-    logout() {
-        API.logout().then((data)=> {
-            window.location.pathname = "/"
-        }).catch((err)=> {
-            console.log(err)
-        })
-    }
-
-    toggle() {
-        this.setState({
-            isOpen: !this.state.isOpen
-        });
-    }
-
-    render() {
-        return (
-            <div>
-
-<Nav className=" text-warning"  tabs>
-  <NavItem>
-    <NavLink className="" href="/" >Home</NavLink>
-  </NavItem>
-
-  <NavItem>
-    <NavLink href="/cookbook">Cook Book</NavLink>
-  </NavItem>
-  <NavItem>
-    <NavLink href="/mealplan">Meal Plan</NavLink>
-  </NavItem>
-  <NavItem>
-    <NavLink  href="/addrecipe">Add Recipe</NavLink>
-  </NavItem>
-  <NavItem>
-    <NavLink  href="/recipesearch">Recipe Search</NavLink>
-  </NavItem>
-  <br/>
-  <br/>
-  <br/>
-  {this.state.loggedIn ? (<div className='ml-auto'>
-      <NavItem>
-      <NavLink  onClick={this.logout}>Logout</NavLink>
-      
-    </NavItem>
-   
-  </div>
-  ):(
-      <div className='ml-auto'>
-    
-    
-  
-  <NavItem>
-  <NavLink  href="/signup">Sign Up</NavLink>
-</NavItem>
-</div>
-  )}
-</Nav>
-</div>
-        );
-    }
+  })
+  function logout() {
+    API.logout().then((data)=> {
+        window.location.pathname = "/"
+    }).catch((err)=> {
+        console.log(err)
+    })
 }
+
+  useEffect(() => {
+    API.isLoggedIn().then(user => {
+        if (user.data.loggedIn) {
+            setUser({
+                loggedIn: true,
+                user: user.data.user
+            });
+            console.log(user.data)
+        }
+    },
+        )
+}, [])
+
+
+  const toggleNavbar = () => setCollapsed(!collapsed);
+
+  return (
+    <div>
+      <Navbar className=" text-light  " color="primary" light>
+          <hr/>
+        <NavbarBrand href="/" className=" text-light  mr-auto ">Working Title</NavbarBrand>
+        <NavbarToggler onClick={toggleNavbar} className=" text-light mr-2 ml-auto" />
+        <Collapse isOpen={!collapsed} navbar>
+          <Nav navbar>
+            <NavItem>
+              <NavLink className="text-light" href="/home">Home <hr/></NavLink>
+
+            </NavItem>
+            <NavItem>
+              <NavLink className=" text-light" href="/cookbook">Cook Book <hr/></NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink className=" text-light" href="/mealplan">Meal Plan <hr/></NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink className=" text-light" href="/addrecipe">Add Recipe <hr/></NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink className=" text-light" href="/recipesearch">Recipe Search<hr/></NavLink>
+            </NavItem>
+            { !user.loggedIn ? (<>
+            <NavItem>
+              <NavLink className=" text-light" href="/login">Log In<hr/></NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink className=" text-light" href="/signup">Sign Up <hr/></NavLink>
+            </NavItem></>
+             ) :(
+            <NavItem>
+              <NavLink className=" text-light" onClick={logout}>Log Out<hr/></NavLink>
+            </NavItem> )
+            
+        
+        }  
+
+          </Nav>
+        </Collapse>
+      </Navbar>
+      <hr/>
+    </div>
+  );
+}
+
+export default Example;
