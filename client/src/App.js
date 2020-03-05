@@ -10,13 +10,14 @@ import { Container } from 'reactstrap';
 import Book from './pages/Book'
 import AddRecipe from "./pages/AddRecipe"
 import MealPlan from "./pages/MealPlan"
-
+import RecipeSearch from "./pages/RecipeSearch"
+import 'bootstrap/dist/css/bootstrap.min.css'
 function App() {
   return (
       <Router>
         <>
-          <TopNav className="" />
-          <Container className="">
+         
+          <Container > <TopNav className="" />
             <Switch>
               <Route exact path="/" component={Home} />
               <Route exact path="/signup" render={(props) => <Auth {...props} action="signup" />} />
@@ -25,7 +26,7 @@ function App() {
               <Route exact path= "/home"><Home/></Route>
               <Route exact path="/cookbook"><Book/></Route>
               <Route exact path="/addrecipe"><AddRecipe/></Route>
-              <Route exact path="/searchrecipe"></Route>
+              <Route exact path="/recipesearch"><RecipeSearch/></Route>
               <Route exact path="/mealplan"><MealPlan/></Route>
               <Route exact path="/cookbook/:id"></Route>
               <Route component={NoMatch} />

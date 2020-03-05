@@ -1,100 +1,30 @@
-import React, { Component } from "react";
-import "./TopNav.scss";
-import API from "../../utils/API";
-import {
-    Collapse,
-    Navbar,
-    NavbarToggler,
-    NavbarBrand,
-    Nav,
-    NavItem,
-    NavLink,
-    UncontrolledDropdown,
-    DropdownToggle,
-    DropdownMenu,
-    DropdownItem,
-} from 'reactstrap';
+import React, { useState } from 'react';
+import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
 
-export default class Navigation extends Component {
+const Example = (props) => {
+  const [collapsed, setCollapsed] = useState(true);
 
-    constructor(props) {
-        super(props);
-        this.toggle = this.toggle.bind(this);
-        this.state = {
-            isOpen: false,
-            loggedIn: false
-        };
-    }
+  const toggleNavbar = () => setCollapsed(!collapsed);
 
-    componentDidMount() {
-        API.isLoggedIn().then(user => {
-            if (user.data.loggedIn) {
-                this.setState({
-                    loggedIn: true
-                });
-            }
-        }).catch(err => {
-            console.log(err);
-        });
-    }
-
-    logout() {
-        API.logout().then((data)=> {
-            window.location.pathname = "/"
-        }).catch((err)=> {
-            console.log(err)
-        })
-    }
-
-    toggle() {
-        this.setState({
-            isOpen: !this.state.isOpen
-        });
-    }
-
-    render() {
-        return (
-            <div>
-
-<Nav className=" text-warning"  tabs>
-  <NavItem>
-    <NavLink className="" href="/" >Home</NavLink>
-  </NavItem>
-
-  <NavItem>
-    <NavLink href="/cookbook">Cook Book</NavLink>
-  </NavItem>
-  <NavItem>
-    <NavLink href="/mealplan">Meal Plan</NavLink>
-  </NavItem>
-  <NavItem>
-    <NavLink  href="/addrecipe">Add Recipe</NavLink>
-  </NavItem>
-  <NavItem>
-    <NavLink  href="/recipesearch">Recipe Search</NavLink>
-  </NavItem>
-  <br/>
-  <br/>
-  <br/>
-  {this.state.loggedIn ? (<div className='ml-auto'>
-      <NavItem>
-      <NavLink  onClick={this.logout}>Logout</NavLink>
-      
-    </NavItem>
-   
-  </div>
-  ):(
-      <div className='ml-auto'>
-    
-    
-  
-  <NavItem>
-  <NavLink  href="/signup">Sign Up</NavLink>
-</NavItem>
-</div>
-  )}
-</Nav>
-</div>
-        );
-    }
+  return (
+    <div>
+      <Navbar className="sticky-top" color="faded" light>
+          <hr/>
+        <NavbarBrand href="/" className="mr-auto"></NavbarBrand>
+        <NavbarToggler onClick={toggleNavbar} className="mr-2" />
+        <Collapse isOpen={!collapsed} navbar>
+          <Nav navbar>
+            <NavItem>
+              <NavLink href="/components/">Home</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="/cookbook">Cook Book</NavLink>
+            </NavItem>
+          </Nav>
+        </Collapse>
+      </Navbar>
+    </div>
+  );
 }
+
+export default Example;
