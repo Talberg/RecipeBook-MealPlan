@@ -17,8 +17,6 @@
     "url": "git+https://github.com/evanejtucker/react-auth.git"
   },
   "keywords": [],
- 
- 
   "homepage": "https://github.com/evanejtucker/react-auth#readme",
   "dependencies": {
     "axios": "^0.19.2",
