@@ -17,7 +17,7 @@ router.post("/new", function (req, res, next) {
     console.log(req.body)
    db.Recipe.create(req.body)
     .then(({author,_id})=>{
-        db.User.findByIdAndUpdate(author, { $push: { recipes: _id } }, { new: true }, (err, user) => {
+        db.User.findByIdAndUpdate(author, { $set: { recipes: _id } }, { new: true }, (err, user) => {
             if (err) throw err;
             res.send(user);
         })

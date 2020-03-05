@@ -9,9 +9,10 @@ import Footer from "./components/Footer";
 import { Container } from 'reactstrap';
 import Book from './pages/Book'
 import AddRecipe from "./pages/AddRecipe"
-import MealPlan from "./pages/MealPlan"
+import MealPlan from "./pages/MealPlan/MealPlan"
 import RecipeSearch from "./pages/RecipeSearch"
 import 'bootstrap/dist/css/bootstrap.min.css'
+import CreateMealPlan from "./pages/CreateMealPlan"
 function App() {
   return (
       <Router>
@@ -28,6 +29,7 @@ function App() {
               <Route exact path="/addrecipe"><AddRecipe/></Route>
               <Route exact path="/recipesearch"><RecipeSearch/></Route>
               <Route exact path="/mealplan"><MealPlan/></Route>
+              <Route exact path="/mealplan/create"><CreateMealPlan/></Route>
               <Route exact path="/cookbook/:id"></Route>
               <Route component={NoMatch} />
             </Switch>
