@@ -16,10 +16,11 @@ import CreateMealPlan from "./pages/CreateMealPlan"
 import RecipeCard from './pages/RecipeCard/index'
 function App() {
   return (
-      <Router>
+      <Router className="bg-warning">
         <>
         <TopNav className="" />
-          <Container > 
+        <div className="bg-warning">
+          <Container className="bg-warning" > 
             <Switch>
               <Route exact path= "/"> <Profile></Profile></Route>
               <Route exact path="/signup" render={(props) => <Auth {...props} action="signup" />} />
@@ -35,7 +36,7 @@ function App() {
               <Route component={NoMatch} />
             </Switch>
           </Container>
-        
+          </div>
 
          
         </>

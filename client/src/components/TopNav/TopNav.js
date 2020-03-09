@@ -37,13 +37,13 @@ const Example = (props) => {
     <div>
       <Navbar onClick={toggleNavbar} className=" font  text-light   " color="danger" secondary>
         <hr />
-        <NavbarBrand onClick={toggleNavbar} className=" font  text-dark title   mr-auto "><h1>Working Title</h1></NavbarBrand>
+        <NavbarBrand onClick={toggleNavbar} className=" font  text-dark title   mr-auto "><h1 title>Working Title</h1></NavbarBrand>
         <NavbarToggler onClick={toggleNavbar} className=" font  text-light ml-auto" />
         <Collapse isOpen={!collapsed} navbar>
           <Nav className=" font bg-light rounded" navbar>
             
             <NavItem>
-              
+            
               <NavLink className=" font  bg-secondary rounded  pl-5 text-light" href="/home"><br></br>Home <hr /></NavLink>
 
             </NavItem>
@@ -67,7 +67,7 @@ const Example = (props) => {
                 <NavLink className=" font  pl-5 bg-secondary rounded  text-light" href="/login"><br></br>Log In<hr /></NavLink>
               </NavItem>
               <NavItem>
-                <NavLink className=" font  pl-5  text-secondary" href="/signup"><br></br>Sign Up <hr /></NavLink>
+                <NavLink className=" font  pl-5  text-secondary" href="/signup"><br></br>Sign Up </NavLink>
               </NavItem></>
             ) : (
                 <NavItem>
