@@ -55,8 +55,8 @@ function Book() {
 
     // Deletes a book from the database with a given id, then reloads books from the db
     function deleteRecipe(recipe) {
-      axios.post("api/recipe/remove", recipe )
-      .then(loadRecipe())
+        axios.post("api/recipe/remove", recipe)
+            .then(loadRecipe())
     }
 
 
@@ -87,43 +87,46 @@ function Book() {
         <div>
             {user.loggedIn ? (
                 <div className="profileBox">
-                    <hr/>
-                    <h1 className="text-center" id="userTitle">Your Cook Book </h1>
-                    <hr/>
+                    <hr />
+                    <h1 className="text-center" id="userTitle">My Cook Book </h1>
+                    <hr />
+                    <div className="row">
                     {recipes.map(recipe => {
 
-                        return( <div><div class="card">
-                        <h5 class="card-header">{recipe.title}</h5>
-                        <div class="card-body">
-                    <h5 class="card-title">{recipe.ingredients}</h5>
-                          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                          <a href={`/cookbook/${recipe._id}`}  class="col-m-2 mr-2 btn btn-primary">Recipe Card</a>
-                          <a onClick={()=>{deleteRecipe(recipe)}}  class="col-m-2  btn btn-primary">Delete Recipe</a>
+                        return (<div ><div className="col offset-4"><div class="card">
+                            <h5 class="card-header">{recipe.title}</h5>
+                            <div class="card-body">
+                              
+                                <a href={`/cookbook/${recipe._id}`} class="col-m-2 mr-2 btn btn-primary">Recipe Card</a>
+                                <a onClick={() => { deleteRecipe(recipe) }} class="col-m-2  btn btn-primary">Delete Recipe</a>
+                            </div>
                         </div>
-                      </div>
-                      <br/>
-                      <br/>
-                      </div>
+                            <br />
+                            <br />
+                            </div>
+                        </div>
                       
                       
 
-                      
-                      )
+
+            )
                     })}
-                </div>
-            ) : (
-                    <div className="noUser">
-
-                        <>
-                            <h1 >Please log in!</h1>
-                            <Link className="loginLink" to="/login"><Button className="loginBtn" color="info" block >Login</Button></Link>
-                        </>
-
-
-
                     </div>
-                )}
+                </div>
+    ) : (
+        <div className="noUser">
+
+            <>
+                <h1 >Please log in!</h1>
+                <Link className="loginLink" to="/login"><Button className="loginBtn" color="info" block >Login</Button></Link>
+            </>
+
+
+
         </div>
+    )
+}
+        </div >
 
 
 

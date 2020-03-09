@@ -12,12 +12,7 @@
     "build": "cd client && npm run build",
     "heroku-postbuild": "npm run build"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/evanejtucker/react-auth.git"
-  },
   "keywords": [],
-  "homepage": "https://github.com/evanejtucker/react-auth#readme",
   "dependencies": {
     "axios": "^0.19.2",
     "bcrypt": "^3.0.8",
@@ -32,11 +27,22 @@
     "passport-local": "^1.0.0",
     "path": "^0.12.7",
     "react-bootstrap": "^1.0.0-beta.17",
+    "react-router-dom": "^5.1.2",
     "reactstrap": "^8.4.1"
   },
   "devDependencies": {
     "colors": "^1.4.0",
     "concurrently": "^4.1.2",
     "nodemon": "^1.19.4"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Talberg/RecipeBook-MealPlan.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Talberg/RecipeBook-MealPlan/issues"
+  },
+  "homepage": "https://github.com/Talberg/RecipeBook-MealPlan#readme"
 }
