@@ -25,6 +25,10 @@ function ShoppingList() {
 
 
 
+    let list = []
+
+
+
     // Load all books and store them with setBooks
     useEffect(() => {
         API.isLoggedIn().then(user => {
@@ -34,22 +38,35 @@ function ShoppingList() {
                     user: user.data.user
                 });
                 console.log(user.data)
-               console.log(currentPlan)
-              
-                loadCurrentPlan()
+                console.log(currentPlan)
+
+
             }
         },
             loadMealPlan())
         loadCurrentPlan()
-      
-      
+
+
+
+
+
     }, [])
 
     function listGetter(name) {
 
         axios.post(`/api/mealplan/getid`, name).then(res => {
             console.log(res)
-        
+            res.data.ingredients.map(ingredient => 
+                 list.push(ingredient)
+            )
+
+
+
+
+
+
+
+
 
         })
     }
@@ -71,11 +88,13 @@ function ShoppingList() {
     };
     function loadCurrentPlan() {
         axios.get("/api/mealplan/current").then(res => {
-            console.log(res)
+            console.log(res.data)
             setCurrentPlan(res.data)
-            for (let i = 2 ; i===9; i++ ){
-                
-            }
+
+
+
+
+
         }
         )
 
@@ -94,14 +113,19 @@ function ShoppingList() {
         })
     }
 
-    // Deletes a book from the database with a given id, then reloads books from the db
+    // Deletes a book from the database with a given id, then reloads books from the 
 
-function makeList(){
-    currentPlan.map(res=>{
-        console.log(res)
-    })
-}
+    function listMaker() {
 
+        listGetter({ title: currentPlan.monday })
+        listGetter({ title: currentPlan.tuesday })
+        listGetter({ title: currentPlan.wednesday })
+        listGetter({ title: currentPlan.thursday })
+        listGetter({ title: currentPlan.friday })
+        listGetter({ title: currentPlan.saturday })
+        listGetter({ title: currentPlan.sunday })
+
+    }
 
 
     // Handles updating component state when the user types into the input field
@@ -114,17 +138,31 @@ function makeList(){
     // When the form is submitted, use the API.saveBook method to save the book data
     // Then reload books from the database
     ;
- let shoppinglist= []
+    let shoppinglist = []
+
+
+    function show(){
+        listMaker()
+        return(
+        <ul>
+        {list.map(res => {
+            return (<li>{res}</li>)
+        })}
+        </ul>
+        )
+
+    }
+   
 
 
     return (
 
-<>
-        
-       
+        <>
 
-        <div>
-            {user.loggedIn ? (<><ul> <button onClick={listGetter}></button> </ul></>) : (
+
+
+            <div>
+                {user.loggedIn ? (<><button onClick={listMaker}></button> </>) : (
                     <div className="noUser">
 
                         <>
@@ -138,7 +176,7 @@ function makeList(){
                 )}
 
 
-        </div></>
+            </div></>
 
 
 
