@@ -37,9 +37,9 @@ function MealPlan() {
             }
         },
             loadMealPlan())
-            loadCurrentPlan()
-            console.log(mealplans)
-            console.log(currentPlan)
+        loadCurrentPlan()
+        console.log(mealplans)
+        console.log(currentPlan)
     }, [])
 
 
@@ -57,29 +57,30 @@ function MealPlan() {
             )
             .catch(err => console.log(err));
     };
-    function loadCurrentPlan(){
-        axios.get("/api/mealplan/current").then(res =>{
+    function loadCurrentPlan() {
+        axios.get("/api/mealplan/current").then(res => {
             console.log(res)
-            setCurrentPlan(res.data)}
+            setCurrentPlan(res.data)
+        }
         )
 
-        
+
     }
-    function makeCurrent(plan){
+    function makeCurrent(plan) {
         axios.post("/api/mealplan/makecurrent", plan)
     }
 
-    function linkGetter(name){
-     
-        axios.post(`/api/mealplan/getid`,name).then(res=>{
+    function linkGetter(name) {
+
+        axios.post(`/api/mealplan/getid`, name).then(res => {
             console.log(res)
             window.location.pathname = `/cookbook/${res._id}`
-            
+
         })
     }
 
     // Deletes a book from the database with a given id, then reloads books from the db
-   
+
 
 
     // Handles updating component state when the user types into the input field
@@ -91,42 +92,91 @@ function MealPlan() {
 
     // When the form is submitted, use the API.saveBook method to save the book data
     // Then reload books from the database
- ;
+    ;
 
     return (
 
         <div>
             {user.loggedIn ? (
                 <div className="profileBox">
-                    <hr/>
-                   { currentPlan         ?(<> <h1 className="text-center" id="userTitle">Current Meal Plan <hr/> </h1>
-                    
+                    <hr />
+                    {currentPlan ? (<> <h1 className="text-center" id="userTitle">Current Meal Plan <hr /> </h1>
 
-                     <div><div class="card">
-                        <h5 class="card-header">{currentPlan.title}</h5>
-                        <div class="card-body">
-                    <h5 class="card-title">{}</h5>
-                        <ul>
-                    <li>Monday: {currentPlan.monday}<br></br><br></br> <a className="btn btn-primary text-light " onClick={()=>{linkGetter({title:currentPlan.monday})}}>Recipe Card</a> <hr></hr> </li>
-                    <li>Tuesday: {currentPlan.tuesday} <br></br><br></br> <a className="btn btn-primary text-light " onClick={()=>{linkGetter({title:currentPlan.tuesday})}}>Recipe Card</a><hr></hr></li>
-                    <li>wednesday: {currentPlan.wednesday}<br></br><br></br> <a className="btn btn-primary text-light " onClick={()=>{linkGetter({title:currentPlan.wednesday})}}>Recipe Card</a><hr></hr></li>
-                    <li>thursday: {currentPlan.thursday}<br></br><br></br> <a className="btn btn-primary text-light " onClick={()=>{linkGetter({title:currentPlan.thursday})}}>Recipe Card</a><hr></hr></li>
-                    <li>Friday: {currentPlan.friday}<br></br><br></br> <a className="btn btn-primary text-light " onClick={()=>{linkGetter({title:currentPlan.friday})}}>Recipe Card</a><hr></hr></li>
-                    <li>Saturday: {currentPlan.monday}<br></br><br></br> <a className="btn btn-primary text-light " onClick={()=>{linkGetter({title:currentPlan.saturday})}}>Recipe Card</a><hr></hr></li>
-                    <li>Sunday: {currentPlan.monday}<br></br><br></br> <a className="btn btn-primary text-light " onClick={()=>{linkGetter({title:currentPlan.sunday})}}>Recipe Card</a><hr></hr></li>
-                           
-                        </ul>
-                          
-                        
+
+                        <div><div class="card bg-warning">
+                            <h5 class="card-header">{currentPlan.title}</h5>
+                            
                         </div>
-                      </div>
-                      <br/>
-                      <br/>
-                      </div></> ) : (<>
-                      <h1 className="text-center"> No meal plan selected<hr></hr></h1>
-                      <h2 className="text-center"> Make one of your meal plans your current by clicking on the button that says "Make Current"<hr></hr></h2>
+                            <br />
+                            <br />
+                            <div class="row">
+                                <div class="col-lg-5">
+                                    <div class="row">
+                                        <div class="col-lg-4"><div className="card" >
+                                            <div className="card-body">
+                                                <h5 className="card-title day">Monday:</h5>
+                                                <p className="card-text">{currentPlan.monday}</p>
+                                                <a className="btn btn-primary text-light " onClick={() => { linkGetter({ title: currentPlan.monday }) }}>Recipe Card</a>
+                                            </div>
+                                        </div></div>
+                                        <div class="col-lg-4"><div className="card" >
+                                            <div className="card-body">
+                                                <h5 className="card-title day">Tuesday:</h5>
+                                                <p className="card-text">{currentPlan.tuesday}</p>
+                                                <a className="btn btn-primary text-light " onClick={() => { linkGetter({ title: currentPlan.tuesday }) }}>Recipe Card</a>
+                                            </div>
+                                        </div></div>
+                                        <div class="col-lg-4"><div className="card" >
+                                            <div className="card-body">
+                                                <h5 className="card-title day">Wednesday:</h5>
+                                                <p className="card-text">{currentPlan.wednesday}</p>
+                                                <a className="btn btn-primary text-light " onClick={() => { linkGetter({ title: currentPlan.wednesday }) }}>Recipe Card</a>
+                                            </div>
+                                        </div></div>
+
+                                    </div>
+                                </div>
+                                <div class="col-lg-7">
+                                    <div class="row">
+                                        <div class="col-lg-3"><div className="card" >
+                                            <div className="card-body">
+                                                <h5 className="card-title day ">Thursday:</h5>
+                                                <p className="card-text">{currentPlan.thursday}</p>
+                                                <a className="btn btn-primary text-light " onClick={() => { linkGetter({ title: currentPlan.thursday }) }}>Recipe Card</a>
+                                            </div>
+                                        </div></div>
+                                        <div class="col-lg-3"><div className="card" >
+                                            <div className="card-body">
+                                                <h5 className="card-title day">Friday:</h5>
+                                                <p className="card-text">{currentPlan.friday}</p>
+                                                <a className="btn btn-primary text-light " onClick={() => { linkGetter({ title: currentPlan.friday }) }}>Recipe Card</a>
+                                              
+                                            </div>
+                                        </div></div>
+                                        <div class="col-lg-3"><div className="card" >
+                                            <div className="card-body">
+                                                <h5 className="card-title day">Saturday:</h5>
+                                                <p className="card-text">{currentPlan.saturday}</p>
+                                                <a className="btn btn-primary text-light " onClick={() => { linkGetter({ title: currentPlan.saturday }) }}>Recipe Card</a>
+                                            </div>
+                                        </div></div>
+                                        <div class="col-lg-3"><div className="card" >
+                                            <div className="card-body">
+                                                <h5 className="card-title day">Sunday:</h5>
+                                                <p className="card-text">{currentPlan.sunday}</p>
+                                                <a className="btn btn-primary text-light " onClick={() => { linkGetter({ title: currentPlan.sunday }) }}>Recipe Card</a>
+                                            </div>
+                                        </div></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br/>
+                            <br/>
+                        </div></>) : (<>
+                            <h1 className="text-center"> No meal plan selected<hr></hr></h1>
+                            <h2 className="text-center"> Make one of your meal plans your current by clicking on the button that says "Make Current"<hr></hr></h2>
                         </>
-                      )
+                        )
 
 
                     }
@@ -134,37 +184,37 @@ function MealPlan() {
 
 
 
-                        {mealplans !== [] ? (<>
-                    <h3>Your Meal Plans </h3>
-                    {mealplans.map(plan => {
+                    {mealplans !== [] ? (<>
+                        <h3>Your Meal Plans </h3>
+                        {mealplans.map(plan => {
 
-                        return( <div><div class="card">
-                        <h5 class="card-header">{plan.title}</h5>
-                        <div class="card-body">
-                    <h5 class="card-title">{}</h5>
-                        <ul>
-                    <li>Monday: {plan.monday}</li>
-                    <li>Tuesday: {plan.tuesday}</li>
-                    <li>wednesday: {plan.wednesday}</li>
-                    <li>thursday: {plan.thursday}</li>
-                    <li>Friday: {plan.friday}</li>
-                    <li>Saturday: {plan.monday}</li>
-                    <li>Sunday: {plan.monday}</li>
-                           
-                        </ul>
-                          
-                          <a onClick={()=>{makeCurrent(plan)}}  class="col-m-2  btn btn-primary">Make Current</a>
-                        </div>
-                      </div>
-                      <br/>
-                      <br/>
-                      </div>
-                      
-                      
+                            return (<div><div class="card">
+                                <h5 class="card-header">{plan.title}</h5>
+                                <div class="card-body">
+                                    <h5 class="card-title ">{}</h5>
+                                    <ul>
+                                        <li>Monday: {plan.monday}</li>
+                                        <li>Tuesday: {plan.tuesday}</li>
+                                        <li>wednesday: {plan.wednesday}</li>
+                                        <li>thursday: {plan.thursday}</li>
+                                        <li>Friday: {plan.friday}</li>
+                                        <li>Saturday: {plan.monday}</li>
+                                        <li>Sunday: {plan.monday}</li>
 
-                      
-                      )
-                    })}</>):(<a href="mealplan/create"  class=" text-light offset-3  btn btn-primary">Create Meal Plan</a>)}
+                                    </ul>
+
+                                    <a onClick={() => { makeCurrent(plan) }} class="col-m-2  btn btn-primary">Make Current</a>
+                                </div>
+                            </div>
+                                <br />
+                                <br />
+                            </div>
+
+
+
+
+                            )
+                        })}</>) : (<a href="mealplan/create" class=" text-light offset-3  btn btn-primary">Create Meal Plan</a>)}
 
 
 

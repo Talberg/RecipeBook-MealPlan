@@ -18,8 +18,8 @@ function App() {
   return (
       <Router>
         <>
-         
-          <Container > <TopNav className="" />
+        <TopNav className="" />
+          <Container > 
             <Switch>
               <Route exact path= "/"> <Profile></Profile></Route>
               <Route exact path="/signup" render={(props) => <Auth {...props} action="signup" />} />
@@ -35,6 +35,8 @@ function App() {
               <Route component={NoMatch} />
             </Switch>
           </Container>
+        
+
          
         </>
       </Router>
