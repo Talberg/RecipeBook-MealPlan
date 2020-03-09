@@ -33,6 +33,13 @@ router.post("/remove", authMiddleware.isLoggedIn, function (req, res, next) {
     });
 });
 
+router.get("/:id", function(req,res){
+    db.Recipe.findById(req.params.id)
+    .then(recipe=>{
+        res.json(recipe)
+    })
+})
+
 
 
 

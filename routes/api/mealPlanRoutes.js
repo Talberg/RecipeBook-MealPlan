@@ -41,6 +41,19 @@ router.post("/makecurrent",function(req,res){
 
 }
 )
+router.post("/currentlink" , function(req,res){
+    console.log( req.body)
+
+    
+})
+router.post("/getid", function(req,res){
+    console.log(req.body)
+    db.Recipe.findOne(req.body, function(req, recipe){
+        console.log(recipe)
+        res.json(recipe)
+
+    })
+})
 
 
 

@@ -69,6 +69,15 @@ function MealPlan() {
         axios.post("/api/mealplan/makecurrent", plan)
     }
 
+    function linkGetter(name){
+     
+        axios.post(`/api/mealplan/getid`,name).then(res=>{
+            console.log(res)
+            window.location.pathname = `/cookbook/${res._id}`
+            
+        })
+    }
+
     // Deletes a book from the database with a given id, then reloads books from the db
    
 
@@ -98,17 +107,17 @@ function MealPlan() {
                         <div class="card-body">
                     <h5 class="card-title">{}</h5>
                         <ul>
-                    <li>Monday: {currentPlan.monday} </li>
-                    <li>Tuesday: {currentPlan.tuesday}</li>
-                    <li>wednesday: {currentPlan.wednesday}</li>
-                    <li>thursday: {currentPlan.thursday}</li>
-                    <li>Friday: {currentPlan.friday}</li>
-                    <li>Saturday: {currentPlan.monday}</li>
-                    <li>Sunday: {currentPlan.monday}</li>
+                    <li>Monday: {currentPlan.monday}<br></br><br></br> <a className="btn btn-primary text-light " onClick={()=>{linkGetter({title:currentPlan.monday})}}>Recipe Card</a> <hr></hr> </li>
+                    <li>Tuesday: {currentPlan.tuesday} <br></br><br></br> <a className="btn btn-primary text-light " onClick={()=>{linkGetter({title:currentPlan.tuesday})}}>Recipe Card</a><hr></hr></li>
+                    <li>wednesday: {currentPlan.wednesday}<br></br><br></br> <a className="btn btn-primary text-light " onClick={()=>{linkGetter({title:currentPlan.wednesday})}}>Recipe Card</a><hr></hr></li>
+                    <li>thursday: {currentPlan.thursday}<br></br><br></br> <a className="btn btn-primary text-light " onClick={()=>{linkGetter({title:currentPlan.thursday})}}>Recipe Card</a><hr></hr></li>
+                    <li>Friday: {currentPlan.friday}<br></br><br></br> <a className="btn btn-primary text-light " onClick={()=>{linkGetter({title:currentPlan.friday})}}>Recipe Card</a><hr></hr></li>
+                    <li>Saturday: {currentPlan.monday}<br></br><br></br> <a className="btn btn-primary text-light " onClick={()=>{linkGetter({title:currentPlan.saturday})}}>Recipe Card</a><hr></hr></li>
+                    <li>Sunday: {currentPlan.monday}<br></br><br></br> <a className="btn btn-primary text-light " onClick={()=>{linkGetter({title:currentPlan.sunday})}}>Recipe Card</a><hr></hr></li>
                            
                         </ul>
                           
-                          <a  class="col-m-2  btn btn-primary">Make Current</a>
+                        
                         </div>
                       </div>
                       <br/>
