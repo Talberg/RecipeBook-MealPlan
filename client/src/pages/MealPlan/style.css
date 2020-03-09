@@ -3,3 +3,13 @@
     text-align: center;
     margin: 0 auto;
     margin-top: 50px;}
+    p {
+        font-size: 12px;
+    }
+    h5{
+        font-size: 15px;
+    }
+
+    .day{
+        font-size: 15px;
+    }
