@@ -36,8 +36,7 @@ function MealPlan() {
                     user: user.data.user
                 });
                 loadRecipe()
-                loadRecipe()
-                loadRecipe()
+              
                 console.log(user.data)
 
             }
@@ -88,11 +87,51 @@ function MealPlan() {
  ;
 
     return (
-<>
-        <><a onClick={loadRecipe} className='btn btn-primary'>
-          </a></>
-        <><a onClick={()=>{console.log(mealplans)}} className='btn btn-primary'>
-          </a></></>
+
+
+
+
+
+      
+      <div>
+      {user.loggedIn ? (<>
+<>{mealplans.ingredients ? (<div className="card ">
+  <div className="card-header">
+  </div>
+  <div className="card-body">
+    <h5 className="card-title text-center">{mealplans.title}</h5>
+    <ul>{mealplans.ingredients.map(res=>{
+      return(
+      <li>{res}</li>
+      )
+    })}</ul>
+    <a href={mealplans.instructions} className="btn btn-primary">Go to Instructions</a>
+  </div>
+  <div className="card-footer text-muted">
+   
+  </div>
+</div>):(<></>)}
+
+       </></>) : (
+              <div className="noUser">
+
+                  <>
+                      <h1 >Please log in!</h1>
+                      <Link className="loginLink" to="/login"><Button className="loginBtn" color="info" block >Login</Button></Link>
+                  </>
+
+
+
+              </div>
+          )}
+  </div>
+
+
+
+
+
+
+
     );
 }
 

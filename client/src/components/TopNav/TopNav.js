@@ -51,6 +51,9 @@ const Example = (props) => {
               <NavLink className=" font  pl-5  text-secondary" href="/cookbook"><br></br>Cook Book <hr /></NavLink>
             </NavItem>
             <NavItem>
+              <NavLink className=" font  pl-5  text-secondary" href="/shoppinglist"><br></br>Shopping List <hr /></NavLink>
+            </NavItem>
+            <NavItem>
               <NavLink className=" font  pl-5 bg-secondary rounded text-light" href="/mealplan"><br></br>Meal Plan <hr /></NavLink>
             </NavItem>
             <NavItem>

@@ -14,6 +14,7 @@ import RecipeSearch from "./pages/RecipeSearch"
 import 'bootstrap/dist/css/bootstrap.min.css'
 import CreateMealPlan from "./pages/CreateMealPlan"
 import RecipeCard from './pages/RecipeCard/index'
+import ShoppingList from "./pages/ShoppingList/index"
 function App() {
   return (
       <Router className="bg-warning">
@@ -33,6 +34,7 @@ function App() {
               <Route exact path="/mealplan"><MealPlan/></Route>
               <Route exact path="/mealplan/create"><CreateMealPlan/></Route>
               <Route exact path="/cookbook/:id"><RecipeCard></RecipeCard></Route>
+              <Route exact path="/shoppinglist"><ShoppingList></ShoppingList></Route>
               <Route component={NoMatch} />
             </Switch>
           </Container>
