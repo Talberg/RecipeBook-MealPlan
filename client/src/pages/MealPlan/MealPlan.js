@@ -187,8 +187,15 @@ function MealPlan() {
 
 
                        </>) : (<>
-                            <h1 className="text-center"> No meal plan selected<hr></hr></h1>
+                        
+                            
                             <h2 className="text-center"> Make one of your meal plans your current by clicking on the button that says "Make Current"<hr></hr></h2>
+                            <><div className=" text-center row">
+                <div className="card col-6 offset-3  plan noLogged">
+                     <div className="card-body"><h1 > No meal plan selected<hr></hr></h1></div>
+                     <div className="card-body"><h1 > Make one of your meal plans your current by clicking on the button that says "Make Current"<hr></hr></h1></div>
+                    </div></div>
+                </>
                         </>
                         )
 
