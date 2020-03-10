@@ -228,7 +228,7 @@ function MealPlan() {
 
 
                             )
-                        })}</>) : (<a href="mealplan/create" class=" text-light offset-3  btn btn-info">Create Meal Plan</a>)}
+                        })}</>) : (<div className="row"><div className="col-6 offset-3"><a href="mealplan/create" class=" text-light offset-3  btn btn-info">Create Meal Plan</a></div></div>)}
 
 
 
