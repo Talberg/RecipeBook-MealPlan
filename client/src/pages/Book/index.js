@@ -85,20 +85,31 @@ function Book() {
     return (
 
         <div>
+            <br></br><br></br>
             {user.loggedIn ? (
-                <div className="profileBox">
+
+<div class="">
+<div class="card-header bg-info text-center rounded-pill book  font">
+  <h1 className=" recipeTitle ">My Cook Book</h1>
+</div>
+<div class="card-body font ">
+  
+
+
+
+
                     <hr />
-                    <h1 className="text-center" id="userTitle">My Cook Book </h1>
-                    <hr />
-                    <div className="row">
+                    
+                 
+                    <div align="center" className=" row">
                     {recipes.map(recipe => {
 
-                        return (<div ><div className="col offset-4"><div class="card">
-                            <h5 class="card-header">{recipe.title}</h5>
+                        return (<div ><div className="col-12 offset-2   mr-1 "><div class="recipe card">
+                            <h5 class="card-header text-center text-light bg-danger font"><u>{recipe.title}</u></h5>
                             <div class="card-body">
                               
-                                <a href={`/cookbook/${recipe._id}`} class="col-m-2 mr-2 btn btn-primary">Recipe Card</a>
-                                <a onClick={() => { deleteRecipe(recipe) }} class="col-m-2  btn btn-primary">Delete Recipe</a>
+                                <a href={`/${recipe._id}`} class="col-m-2 mr-2 btn btn-info">Recipe Card</a>
+                                <a onClick={() => { deleteRecipe(recipe) }} class="col-m-2 text-light  btn btn-info">Delete Recipe</a>
                             </div>
                         </div>
                             <br />
@@ -111,19 +122,15 @@ function Book() {
 
             )
                     })}
-                    </div>
-                </div>
+                    </div></div>
+</div>
+              
     ) : (
-        <div className="noUser">
-
-            <>
-                <h1 >Please log in!</h1>
-                <Link className="loginLink" to="/login"><Button className="loginBtn" color="info" block >Login</Button></Link>
-            </>
-
-
-
-        </div>
+        <><div className=" text-center row">
+        <div className="card col-6 offset-3  plan noLogged">
+             <div className="card-body"><h1 >Please log in!</h1></div>
+            <Link className="loginLink" to="/login"><Button className="loginBtn" color="info" block >Login</Button></Link></div></div>
+        </>
     )
 }
         </div >

@@ -60,8 +60,8 @@ const AddRecipe = (props) => {
     <hr/>
     <br/>
     <hr/>
-
-<form>
+<div className="forms bg-info p-5  " >
+<form >
   <div className="form-group">
     <label for="exampleFormControlInput1">Recipe Title</label>
     <input name='title' onChange={handleInputChange}  value={recipe.title} className="form-control" id="exampleFormControlInput1" placeholder=""></input>
@@ -159,8 +159,8 @@ const AddRecipe = (props) => {
   
   
   
-  <button className="btn-primary " onClick={handleSubmit}>Add Recipe</button>
-</form>  </>)
+  <button className="btn-danger " onClick={handleSubmit}>Add Recipe</button>
+</form> </div> </>)
 }
 
 export default AddRecipe ;

@@ -56,9 +56,9 @@ function ShoppingList() {
 
         axios.post(`/api/mealplan/getid`, name).then(res => {
             console.log(res)
-            res.data.ingredients.map(ingredient => 
-                 list.push(ingredient)
-            )
+            res.data.ingredients.map(ingredient => {
+                list.push(ingredient)
+            })
 
 
 
@@ -90,6 +90,13 @@ function ShoppingList() {
         axios.get("/api/mealplan/current").then(res => {
             console.log(res.data)
             setCurrentPlan(res.data)
+            listGetter({ title: res.data.monday })
+            listGetter({ title: res.data.tuesday })
+            listGetter({ title: res.data.wednesday })
+            listGetter({ title: res.data.thursday })
+            listGetter({ title: res.data.friday })
+            listGetter({ title: res.data.saturday })
+            listGetter({ title: res.data.sunday })
 
 
 
@@ -139,19 +146,6 @@ function ShoppingList() {
     // Then reload books from the database
     ;
     let shoppinglist = []
-
-
-    function show(){
-        listMaker()
-        return(
-        <ul>
-        {list.map(res => {
-            return (<li>{res}</li>)
-        })}
-        </ul>
-        )
-
-    }
    
 
 
@@ -162,17 +156,12 @@ function ShoppingList() {
 
 
             <div>
-                {user.loggedIn ? (<><button onClick={listMaker}></button> </>) : (
-                    <div className="noUser">
-
-                        <>
-                            <h1 >Please log in!</h1>
-                            <Link className="loginLink" to="/login"><Button className="loginBtn" color="info" block >Login</Button></Link>
-                        </>
-
-
-
-                    </div>
+                {user.loggedIn ? (<>{listMaker()}  </>) : (
+                      <><div className=" text-center row">
+                      <div className="card col-6 offset-3  plan noLogged">
+                           <div className="card-body"><h1 >Please log in!</h1></div>
+                          <Link className="loginLink" to="/login"><Button className="loginBtn" color="info" block >Login</Button></Link></div></div>
+                      </>
                 )}
 
 

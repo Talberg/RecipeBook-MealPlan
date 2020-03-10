@@ -101,15 +101,19 @@ function RecipeSearch() {
         <div>
             {user.loggedIn ? (
                 <div className="profileBox">
-                    <h1 className="text-center" id="userTitle">Add Recipe to Your CookBook </h1>
+                    <div className="row "><div className="col-6 forms  bg-info p-5 mt-5 form offset-3">
+                    <h1 className="text-center plans font pb-2 pt-2 bg-warning title" id=""> Recipe Search </h1>
                     <hr />
                     <div className="form-group">
-                        <label for="exampleFormControlInput1">Recipe Title</label>
+                        
                         <input name='term' onChange={handleInputChange} value={search.term} className="form-control" id="exampleFormControlInput1" placeholder=""></input>
                     </div>
-                    <a className="text-white col-m-2 mr-2 btn btn-primary" onClick={handleSubmit}> Search </a>
+                    <a className="text-white col-m-2 mr-2 btn btn-danger" onClick={handleSubmit}> Search </a>
                     <hr/>
                     <br/>
+                    </div></div>
+                    <br></br>
+                    <br></br>
 
 
                     {search.loaded  ?(
@@ -124,13 +128,13 @@ function RecipeSearch() {
                             console.log(user)
 
 
-
-                                return (<div><div class="card">
-                                    <h5 class="card-header">{result.recipe.label}</h5>
+ 
+                                return (<div><div class=" p-5 bg-warning offset-3  col-6 text-center rounded-pill search ">
+                                    <h3 class="card-header bg-danger search rounded-pill text-dark font">{result.recipe.label}</h3>
                                     <div class="card-body">
-                                        <h5 class="card-title">{result.recipe.label}</h5>
-                        <p  class="card-text">Number of Ingredients: {result.recipe.ingredientLines.length }</p>
-                                        <a onClick={()=>handleNewRecipe(newRecipe)} class="text-white col-m-2 mr-2 btn btn-primary">Add to Cook Book</a>
+                                        
+                        <p  class="card-text font text-light">Number of Ingredients: {result.recipe.ingredientLines.length }</p>
+                                        <a onClick={()=>handleNewRecipe(newRecipe)} class="text-white col-m-2 mr-2 btn btn-info">Add to Cook Book</a>
                                     </div>
                                 </div>
                                     <br />
@@ -145,16 +149,11 @@ function RecipeSearch() {
 
                 </div>
             ) : (
-                    <div className="noUser">
-
-                        <>
-                            <h1 >Please log in!</h1>
-                            <Link className="loginLink" to="/login"><Button className="loginBtn" color="info" block >Login</Button></Link>
-                        </>
-
-
-
-                    </div>
+                <><div className=" text-center row">
+                <div className="card col-6 offset-3  plan noLogged">
+                     <div className="card-body"><h1 >Please log in!</h1></div>
+                    <Link className="loginLink" to="/login"><Button className="loginBtn" color="info" block >Login</Button></Link></div></div>
+                </>
                 )}
         </div>
 

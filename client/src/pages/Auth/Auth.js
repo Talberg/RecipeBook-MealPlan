@@ -78,7 +78,7 @@ class Auth extends Component {
   }
 
   render() {
-    return (
+    return (<div className="row"><div className="card col-6 offset-3 noLogged">
       <div className="authBox">
         {(this.props.action === "login") ? (
           <Login
@@ -100,6 +100,7 @@ class Auth extends Component {
             />
           )}
       </div>
+      </div></div>
     )
   }
 }

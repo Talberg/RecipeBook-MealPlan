@@ -34,11 +34,12 @@ const Example = (props) => {
   const toggleNavbar = () => setCollapsed(!collapsed);
 
   return (
-    <div>
-      <Navbar onClick={toggleNavbar} className=" font  text-light   " color="danger" secondary>
-        <hr />
-        <NavbarBrand onClick={toggleNavbar} className=" font  text-dark title   mr-auto "><h1 title>Working Title</h1></NavbarBrand>
-        <NavbarToggler onClick={toggleNavbar} className=" font  text-light ml-auto" />
+    <div className="navBAR" >
+      <Navbar onClick={toggleNavbar} className="  text-light nav    " color="danger" secondary>
+        
+        <hr className="bg-secondary text-info" /> <span type="image" height="20%" src="https://m.media-amazon.com/images/I/415d2FPV5VL._SR500,500_.jpg" ></span>
+        <NavbarBrand onClick={toggleNavbar} className=" brand  text-dark title   mr-auto "><div className="bg-info   titleback "><h1 className="textSizer"  >DINE-INNER</h1></div></NavbarBrand>
+        <NavbarToggler onClick={toggleNavbar} className="  font  ml-auto" />
         <Collapse isOpen={!collapsed} navbar>
           <Nav className=" font bg-light rounded" navbar>
             
@@ -51,26 +52,26 @@ const Example = (props) => {
               <NavLink className=" font  pl-5  text-secondary" href="/cookbook"><br></br>Cook Book <hr /></NavLink>
             </NavItem>
             <NavItem>
-              <NavLink className=" font  pl-5  text-secondary" href="/shoppinglist"><br></br>Shopping List <hr /></NavLink>
+              <NavLink className=" font  pl-5  bg-secondary text-light" href="/shoppinglist"><br></br>Shopping List <hr /></NavLink>
             </NavItem>
             <NavItem>
-              <NavLink className=" font  pl-5 bg-secondary rounded text-light" href="/mealplan"><br></br>Meal Plan <hr /></NavLink>
+              <NavLink className=" font  pl-5 bg-light rounded text-secondary" href="/mealplan"><br></br>Meal Plan <hr /></NavLink>
             </NavItem>
             <NavItem>
-              <NavLink className=" font   pl-5  text-secondary" href="/mealplan/create"><br></br>Create Meal Plan <hr /></NavLink>
+              <NavLink className=" font   pl-5  text-light bg-secondary" href="/mealplancreate"><br></br>Create Meal Plan <hr /></NavLink>
             </NavItem>
             <NavItem>
-              <NavLink className=" font  pl-5 bg-secondary rounded text-light" href="/addrecipe"><br></br>Add Recipe <hr /></NavLink>
+              <NavLink className=" font  pl-5 bg-light rounded text-secondary" href="/addrecipe"><br></br>Add Recipe <hr /></NavLink>
             </NavItem>
             <NavItem>
-              <NavLink className=" font  pl-5  text-secondary" href="/recipesearch"><br></br>Recipe Search<hr /></NavLink>
+              <NavLink className=" font  pl-5 bg-secondary  text-light" href="/recipesearch"><br></br>Recipe Search<hr /></NavLink>
             </NavItem>
             {!user.loggedIn ? (<>
               <NavItem>
-                <NavLink className=" font  pl-5 bg-secondary rounded  text-light" href="/login"><br></br>Log In<hr /></NavLink>
+                <NavLink className=" font  pl-5 bg-light rounded  text-secondary" href="/login"><br></br>Log In<hr /></NavLink>
               </NavItem>
               <NavItem>
-                <NavLink className=" font  pl-5  text-secondary" href="/signup"><br></br>Sign Up </NavLink>
+                <NavLink className=" font  pl-5 bg-secondary  text-light" href="/signup"><br></br>Sign Up <hr></hr></NavLink>
               </NavItem></>
             ) : (
                 <NavItem>
@@ -83,7 +84,8 @@ const Example = (props) => {
           </Nav>
         </Collapse>
       </Navbar>
-      <hr />
+      
+    
     </div>
   );
 }

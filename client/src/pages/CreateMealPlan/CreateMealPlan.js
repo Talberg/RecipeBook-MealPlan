@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import API from "../utils/API"
+import API from "../../utils/API"
 import axios from "axios"
 
 import { Button } from 'reactstrap'
-import { List, ListItem } from "../components/List";
+import { List, ListItem } from "../../components/List";
 import { Link } from "react-router-dom";
 
 function CreateMealPlan(){
@@ -84,7 +84,12 @@ function loadRecipe() {
 
     return (<div>
       {user.loggedIn ? (
-        <>
+
+        <> <hr/>
+        <br/>
+        <hr/> <div className="bg-info p-5 forms">
+        <form className="" > 
+        
           <div className="form-group">
     <label for="exampleFormControlInput1">Recipe Title</label>
     <input name='title' onChange={handleInputChange}  value={recipe.title} className="form-control" id="exampleFormControlInput1" placeholder=""></input>
@@ -160,20 +165,21 @@ function loadRecipe() {
           
         </select>
       </div>
-      <button onClick={handleSubmit}  > Submit Plan</button>
-      
+      <button className="bt btn-danger" onClick={handleSubmit}  > Submit Plan</button>
+      </form></div>
            </>
       ) : (
-              <div className="noUser">
+              
       
-                  <>
-                      <h1 >Please log in!</h1>
-                      <Link className="loginLink" to="/login"><Button className="loginBtn" color="info" block >Login</Button></Link>
+                  <><div className=" text-center row">
+                  <div className="card col-6 offset-3  plan noLogged">
+                       <div className="card-body"><h1 >Please log in!</h1></div>
+                      <Link className="loginLink" to="/login"><Button className="loginBtn" color="info" block >Login</Button></Link></div></div>
                   </>
       
       
       
-              </div>
+              
           )}
       </div>
     )

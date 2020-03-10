@@ -95,34 +95,29 @@ function MealPlan() {
       
       <div>
       {user.loggedIn ? (<>
-<>{mealplans.ingredients ? (<div className="card ">
-  <div className="card-header">
-  </div>
+<>{mealplans.ingredients ? (<div className="  row mt-3"><div className= " mt-3 p-5  plan bg-info col-6 offset-3 recipe card ">
+  
   <div className="card-body">
-    <h5 className="card-title text-center">{mealplans.title}</h5>
-    <ul>{mealplans.ingredients.map(res=>{
+    <h2 className="card-title forms title font  bg-warning text-center">{mealplans.title}</h2>
+    <br></br>
+    <hr></hr>
+    <br></br>
+    <ul className="font text-light">{mealplans.ingredients.map(res=>{
       return(
       <li>{res}</li>
       )
     })}</ul>
-    <a href={mealplans.instructions} className="btn btn-primary">Go to Instructions</a>
+    <a href={mealplans.instructions} className="btn btn-danger">Go to Instructions</a>
   </div>
-  <div className="card-footer text-muted">
-   
-  </div>
-</div>):(<></>)}
+  
+</div></div>):(<></>)}
 
        </></>) : (
-              <div className="noUser">
-
-                  <>
-                      <h1 >Please log in!</h1>
-                      <Link className="loginLink" to="/login"><Button className="loginBtn" color="info" block >Login</Button></Link>
-                  </>
-
-
-
-              </div>
+             <><div className=" text-center mt-3 row">
+             <div className="card col-6 offset-3 mt-3  plan noLogged">
+                  <div className="card-body"><h1 >Please log in!</h1></div>
+                 <Link className="loginLink" to="/login"><Button className="loginBtn" color="info" block >Login</Button></Link></div></div>
+             </>
           )}
   </div>
 

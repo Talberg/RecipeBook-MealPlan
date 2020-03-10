@@ -67,14 +67,16 @@ function MealPlan() {
 
     }
     function makeCurrent(plan) {
-        axios.post("/api/mealplan/makecurrent", plan)
+        axios.post("/api/mealplan/makecurrent", plan).then(res=>{
+            window.location.pathname = "/mealplan"
+        })
     }
 
     function linkGetter(name) {
 
         axios.post(`/api/mealplan/getid`, name).then(res => {
             console.log(res)
-            window.location.pathname = `/cookbook/${res.data._id}`
+            window.location.pathname = `/${res.data._id}`
 
         })
     }
@@ -98,13 +100,17 @@ function MealPlan() {
 
         <div>
             {user.loggedIn ? (
-                <div className="profileBox">
-                    <hr />
-                    {currentPlan ? (<> <h1 className="text-center" id="userTitle">Current Meal Plan <hr /> </h1>
-
-
-                        <div><div class="card bg-warning">
-                            <h5 class="card-header">{currentPlan.title}</h5>
+                <div >
+                    
+                    {currentPlan ? (<> 
+                    
+                    
+                        <div class=" row">
+<div class="card-header mt-5 col-8 offset-2 bg-info text-center rounded-pill book  font">
+  <h1 className=" recipeTitle ">Current Meal Plan </h1>
+</div>
+<div class=" rounded-pill card-body font "> <div><div class="plan  bg-warning">
+                            <h5 class="  text-center titlePlan font">{currentPlan.title}</h5>
                             
                         </div>
                             <br />
@@ -112,25 +118,25 @@ function MealPlan() {
                             <div class="row">
                                 <div class="col-lg-5">
                                     <div class="row">
-                                        <div class="col-lg-4"><div className="card" >
-                                            <div className="card-body">
-                                                <h5 className="card-title day">Monday:</h5>
+                                        <div class="col-lg-4"><div className="Days bg-danger card" >
+                                            <div className="card-body text-light  ">
+                                                <h5 className="card-title  font day">Monday:</h5>
                                                 <p className="card-text">{currentPlan.monday}</p>
-                                                <a className="btn btn-primary text-light " onClick={() => { linkGetter({ title: currentPlan.monday }) }}>Recipe Card</a>
+                                                <a className="btn btn-info text-light " onClick={() => { linkGetter({ title: currentPlan.monday }) }}>Recipe Card</a>
                                             </div>
                                         </div></div>
-                                        <div class="col-lg-4"><div className="card" >
-                                            <div className="card-body">
-                                                <h5 className="card-title day">Tuesday:</h5>
+                                        <div class="col-lg-4"><div className="Days bg-danger card" >
+                                            <div className="card-body text-light  ">
+                                                <h5 className="card-title  font day">Tuesday:</h5>
                                                 <p className="card-text">{currentPlan.tuesday}</p>
-                                                <a className="btn btn-primary text-light " onClick={() => { linkGetter({ title: currentPlan.tuesday }) }}>Recipe Card</a>
+                                                <a className="btn btn-info text-light " onClick={() => { linkGetter({ title: currentPlan.tuesday }) }}>Recipe Card</a>
                                             </div>
                                         </div></div>
-                                        <div class="col-lg-4"><div className="card" >
-                                            <div className="card-body">
-                                                <h5 className="card-title day">Wednesday:</h5>
+                                        <div class="col-lg-4"><div className="Days bg-danger card" >
+                                            <div className="card-body text-light ">
+                                                <h5 className="card-title  font day">Wednesday:</h5>
                                                 <p className="card-text">{currentPlan.wednesday}</p>
-                                                <a className="btn btn-primary text-light " onClick={() => { linkGetter({ title: currentPlan.wednesday }) }}>Recipe Card</a>
+                                                <a className="btn btn-info text-light " onClick={() => { linkGetter({ title: currentPlan.wednesday }) }}>Recipe Card</a>
                                             </div>
                                         </div></div>
 
@@ -138,33 +144,33 @@ function MealPlan() {
                                 </div>
                                 <div class="col-lg-7">
                                     <div class="row">
-                                        <div class="col-lg-3"><div className="card" >
+                                        <div class="col-lg-3"><div className="Days bg-danger card" >
                                             <div className="card-body">
-                                                <h5 className="card-title day ">Thursday:</h5>
-                                                <p className="card-text">{currentPlan.thursday}</p>
-                                                <a className="btn btn-primary text-light " onClick={() => { linkGetter({ title: currentPlan.thursday }) }}>Recipe Card</a>
+                                                <h5 className="card-title font text-light  day ">Thursday:</h5>
+                                                <p className="card-text text-light ">{currentPlan.thursday}</p>
+                                                <a className="btn btn-info text-light " onClick={() => { linkGetter({ title: currentPlan.thursday }) }}>Recipe Card</a>
                                             </div>
                                         </div></div>
-                                        <div class="col-lg-3"><div className="card" >
-                                            <div className="card-body">
-                                                <h5 className="card-title day">Friday:</h5>
+                                        <div class="col-lg-3"><div className="Days bg-danger card" >
+                                            <div className="card-body text-light ">
+                                                <h5 className="card-title  font day">Friday:</h5>
                                                 <p className="card-text">{currentPlan.friday}</p>
-                                                <a className="btn btn-primary text-light " onClick={() => { linkGetter({ title: currentPlan.friday }) }}>Recipe Card</a>
+                                                <a className="btn btn-info text-light " onClick={() => { linkGetter({ title: currentPlan.friday }) }}>Recipe Card</a>
                                               
                                             </div>
                                         </div></div>
-                                        <div class="col-lg-3"><div className="card" >
-                                            <div className="card-body">
-                                                <h5 className="card-title day">Saturday:</h5>
+                                        <div class="col-lg-3"><div className="Days bg-danger card" >
+                                            <div className="card-body text-light ">
+                                                <h5 className="card-title  font day">Saturday:</h5>
                                                 <p className="card-text">{currentPlan.saturday}</p>
-                                                <a className="btn btn-primary text-light " onClick={() => { linkGetter({ title: currentPlan.saturday }) }}>Recipe Card</a>
+                                                <a className="btn btn-info text-light " onClick={() => { linkGetter({ title: currentPlan.saturday }) }}>Recipe Card</a>
                                             </div>
                                         </div></div>
-                                        <div class="col-lg-3"><div className="card" >
-                                            <div className="card-body">
-                                                <h5 className="card-title day">Sunday:</h5>
+                                        <div class="col-lg-3"><div className="Days bg-danger card" >
+                                            <div className="card-body text-light ">
+                                                <h5 className="card-title  font day">Sunday:</h5>
                                                 <p className="card-text">{currentPlan.sunday}</p>
-                                                <a className="btn btn-primary text-light " onClick={() => { linkGetter({ title: currentPlan.sunday }) }}>Recipe Card</a>
+                                                <a className="btn btn-info text-light " onClick={() => { linkGetter({ title: currentPlan.sunday }) }}>Recipe Card</a>
                                             </div>
                                         </div></div>
                                     </div>
@@ -172,7 +178,15 @@ function MealPlan() {
                             </div>
                             <br/>
                             <br/>
-                        </div></>) : (<>
+                        </div></div></div>
+                    
+                    
+                    
+                    
+                    <h1 className="text-center font" id="userTitle"><hr /> </h1>
+
+
+                       </>) : (<>
                             <h1 className="text-center"> No meal plan selected<hr></hr></h1>
                             <h2 className="text-center"> Make one of your meal plans your current by clicking on the button that says "Make Current"<hr></hr></h2>
                         </>
@@ -185,25 +199,25 @@ function MealPlan() {
 
 
                     {mealplans !== [] ? (<>
-                        <h3>Your Meal Plans </h3>
+                        <div className="plan font bg-info "><h2 className=" text-center">Saved Meal Plans </h2></div>
                         {mealplans.map(plan => {
 
-                            return (<div><div class="card">
-                                <h5 class="card-header">{plan.title}</h5>
-                                <div class="card-body">
-                                    <h5 class="card-title ">{}</h5>
-                                    <ul>
+                            return (<div><div class="">
+                                <h5 class=" plans rounded-pill Days text-center bg-warning pb-2 ">{plan.title}</h5>
+                                <div class=" cards font bg-danger">
+                                    <h5 class="card-title text-light font ">{}</h5>
+                                    <ul >
                                         <li>Monday: {plan.monday}</li>
                                         <li>Tuesday: {plan.tuesday}</li>
-                                        <li>wednesday: {plan.wednesday}</li>
-                                        <li>thursday: {plan.thursday}</li>
+                                        <li>Wednesday: {plan.wednesday}</li>
+                                        <li>Thursday: {plan.thursday}</li>
                                         <li>Friday: {plan.friday}</li>
                                         <li>Saturday: {plan.monday}</li>
                                         <li>Sunday: {plan.monday}</li>
 
                                     </ul>
 
-                                    <a onClick={() => { makeCurrent(plan) }} class="col-m-2  btn btn-primary">Make Current</a>
+                                    <a onClick={() => { makeCurrent(plan) }} class="col-m-2 offset-1 mb-2   btn btn-info">Make Current</a>
                                 </div>
                             </div>
                                 <br />
@@ -214,7 +228,7 @@ function MealPlan() {
 
 
                             )
-                        })}</>) : (<a href="mealplan/create" class=" text-light offset-3  btn btn-primary">Create Meal Plan</a>)}
+                        })}</>) : (<a href="mealplan/create" class=" text-light offset-3  btn btn-info">Create Meal Plan</a>)}
 
 
 
@@ -223,16 +237,11 @@ function MealPlan() {
 
                 </div>
             ) : (
-                    <div className="noUser">
-
-                        <>
-                            <h1 >Please log in!</h1>
-                            <Link className="loginLink" to="/login"><Button className="loginBtn" color="info" block >Login</Button></Link>
-                        </>
-
-
-
-                    </div>
+                <><div className=" text-center row">
+                <div className="card col-6 offset-3  plan noLogged">
+                     <div className="card-body"><h1 >Please log in!</h1></div>
+                    <Link className="loginLink" to="/login"><Button className="loginBtn" color="info" block >Login</Button></Link></div></div>
+                </>
                 )}
         </div>
 
