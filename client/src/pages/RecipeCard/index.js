@@ -95,10 +95,10 @@ function MealPlan() {
       
       <div>
       {user.loggedIn ? (<>
-<>{mealplans.ingredients ? (<div className="  row mt-3"><div className= " mt-3 p-5  plan bg-info col-6 offset-3 recipe card ">
+<>{mealplans.ingredients ? (<div className="  row mt-3"><div className= " mt-3 p-5   bg-info col-6 offset-3 recipecard card ">
   
   <div className="card-body">
-    <h2 className="card-title forms title font  bg-warning text-center">{mealplans.title}</h2>
+    <h3 className="card-title p-5   font  bg-warning text-center">{mealplans.title}</h3>
     <br></br>
     <hr></hr>
     <br></br>

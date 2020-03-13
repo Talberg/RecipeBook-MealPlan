@@ -76,6 +76,7 @@ function MealPlan() {
 
         axios.post(`/api/mealplan/getid`, name).then(res => {
             console.log(res)
+            console.log(name)
             window.location.pathname = `/${res.data._id}`
 
         })

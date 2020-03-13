@@ -38,7 +38,7 @@ const Example = (props) => {
       <Navbar onClick={toggleNavbar} className="  text-light nav    " color="danger" secondary>
         
         <hr className="bg-secondary text-info" /> <span type="image" height="20%" src="https://m.media-amazon.com/images/I/415d2FPV5VL._SR500,500_.jpg" ></span>
-        <NavbarBrand onClick={toggleNavbar} className=" brand  text-dark title   mr-auto "><div className="bg-info   titleback "><h1 className="textSizer"  >DINE-INNER</h1></div></NavbarBrand>
+        <NavbarBrand onClick={toggleNavbar} className=" brand  text-dark title   mr-auto "><div className="bg-info   titleback "><h1 className="textSizer yellow yellowHover"  >DINE-INNER</h1></div></NavbarBrand>
         <NavbarToggler onClick={toggleNavbar} className="  font  ml-auto" />
         <Collapse isOpen={!collapsed} navbar>
           <Nav className=" font bg-light rounded" navbar>
